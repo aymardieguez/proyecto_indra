@@ -15,3 +15,4 @@ btnNext.addEventListener('click', () => moverCarrusel(1));
 
 // Carrusel automático cada 5 segundos
 setInterval(() => moverCarrusel(1), 5000);
+//
