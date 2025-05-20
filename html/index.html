@@ -2,33 +2,69 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal de Eventos Sostenibles</title>
-  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
   <header>
-    <h1>Portal de Eventos Sostenibles</h1>
+    <h1> Portal de Eventos Sostenibles</h1>
     <nav>
-      <a href="index.html">Inicio</a>
-      <a href="eventos.html">Eventos</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#registro">Registrarse</a>
+      <a href="#organizador">Organizadores</a>
+      <a href="#categorias">Categorías</a>
     </nav>
   </header>
 
   <main>
-    <section class="presentacion">
-      <h2>Bienvenido al portal</h2>
-      <p>Explora conferencias, talleres y actividades ecológicas para construir un futuro más sostenible.</p>
+    <section id="eventos">
+      <h2>Próximos Eventos</h2>
+      <!-- Cada tarjeta representa un evento -->
+      <article class="evento">
+        <h3>Conferencia sobre Energías Renovables</h3>
+        <p><strong>Fecha:</strong> 25 de Junio, 2025</p>
+        <p><strong>Ubicación:</strong> Auditorio Verde</p>
+        <p><strong>Duración:</strong> 3 horas</p>
+        <p><strong>Tipo:</strong> Conferencia</p>
+        <button>Inscribirse</button>
+        <button class="cancelar">Cancelar Evento</button>
+      </article>
+      <!-- Más eventos aquí -->
     </section>
 
-    <section class="carrusel">
-      <h2>Eventos Destacados</h2>
-      <div class="carrusel-contenedor">
-        <img  alt="Evento 1">
-        <img  alt="Evento 2">
-        <img  alt="Evento 3">
-      </div>
+    <section id="registro">
+      <h2>Registro de Usuario</h2>
+      <form>
+        <input type="text" placeholder="Nombre completo" required>
+        <input type="email" placeholder="Correo electrónico" required>
+        <input type="password" placeholder="Contraseña" required>
+        <button>Registrarse</button>
+      </form>
+    </section>
+
+    <section id="organizador">
+      <h2>Organizador</h2>
+      <form>
+        <input type="text" placeholder="Nombre de la organización" required>
+        <input type="text" placeholder="Información de contacto" required>
+        <button>Registrar Organizador</button>
+      </form>
+    </section>
+
+    <section id="categorias">
+      <h2>Categorías de Eventos</h2>
+      <ul>
+        <li>Talleres</li>
+        <li>Conferencias</li>
+        <li>Actividades de Sostenibilidad</li>
+      </ul>
     </section>
   </main>
 
+  <footer>
+    <p>© 2025 Portal de Eventos Sostenibles</p>
+  </footer>
 </body>
 </html>
+
