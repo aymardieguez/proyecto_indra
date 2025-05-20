@@ -11,18 +11,21 @@ contacto varchar(100)
 create table tipo_evento(
 tipo varchar(100) not null primary key
 )
+create table ubicaciones(
+nombre varchar(100) not null primary key
+)
 create table eventos(
 nombre varchar(30) not null primary key,
 fecha date not null,
-duracion smallint not null,
-lugar varchar(100) not null,
+duracion smallint not null check (duracion > 0),
+ubicacion varchar(100) not null references ubicaciones(nombre),
 tipo varchar(100) not null references tipo_evento(tipo),
 organizador varchar(30) not null references organizadores(nombre)
 	on update no action
 	on delete cascade
 )
 create table usuarios(
-correo_electronico varchar(200) not null primary key,
+correo_electronico varchar(200) not null primary key unique,
 nombre varchar(30)not null,
 contraseña varchar(30) not null
 )
