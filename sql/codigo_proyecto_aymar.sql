@@ -34,3 +34,4 @@ usuario varchar(200) not null references usuarios(correo_electronico)
 asistentes smallint not null,
 primary key(evento, usuario)
 )
+
