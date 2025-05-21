@@ -1,71 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Eventos Sostenibles</title>
-  <link rel="stylesheet" href="css/estilo.css"> 
+  <title>Portal de Eventos Sostenibles Galicia</title>
+  <link rel="stylesheet" href="./css/estilo.css">
 </head>
+
 <body>
-  <header>
-    <h1> Portal de Eventos Sostenibles</h1>
-    <nav>
-      <a href="#eventos">Eventos</a>
-      <a href="#registro">Registrarse</a>
-      <a href="#organizador">Organizadores</a>
-      <a href="#categorias">Categorías</a>
-    </nav>
+  <header class="headerIndex">
+    <img class="imgLogo" src="./images/logo_portal_eventos_sostenibles.png"
+      alt="Imagen del logo portal eventos sostenibles">
+    <h2 class="listaEventos">P.E.S.G.</h2>
+    </h2>
+    <h2 class="listaEventos"> <a href="./eventos.html">Listado de eventos</a></h2>
   </header>
-
   <main>
-    <section id="eventos">
-      <h2>Próximos Eventos</h2>
-      <!-- Cada tarjeta representa un evento -->
-      <article class="evento">
-        <h3>Conferencia sobre Energías Renovables</h3>
-        <p><strong>Fecha:</strong> 25 de Junio, 2025</p>
-        <p><strong>Ubicación:</strong> Auditorio Verde</p>
-        <p><strong>Duración:</strong> 3 horas</p>
-        <p><strong>Tipo:</strong> Conferencia</p>
-        <button>Inscribirse</button>
-        <button class="cancelar">Cancelar Evento</button>
-      </article>
-      <!-- Más eventos aquí -->
-    </section>
-
-    <section id="registro">
-      <h2>Registro de Usuario</h2>
-      <form>
-        <input type="text" placeholder="Nombre completo" required>
-        <input type="email" placeholder="Correo electrónico" required>
-        <input type="password" placeholder="Contraseña" required>
-        <button>Registrarse</button>
-      </form>
-    </section>
-
-    <section id="organizador">
-      <h2>Organizador</h2>
-      <form>
-        <input type="text" placeholder="Nombre de la organización" required>
-        <input type="text" placeholder="Información de contacto" required>
-        <button>Registrar Organizador</button>
-      </form>
-    </section>
-
-    <section id="categorias">
-      <h2>Categorías de Eventos</h2>
-      <ul>
-        <li>Talleres</li>
-        <li>Conferencias</li>
-        <li>Actividades de Sostenibilidad</li>
-      </ul>
-    </section>
+    <br><br><br><br>
+    <div class="carrusel">
+      <div class="carrusel-track" id="track">
+        <article class="evento">
+          <a href="./detalle_evento01.html">
+            <h3>Recogida de basuras en la playa</h3>
+          </a>
+          <img src="./images/img_playa_mera.png" alt="Imagen Playa de Mera">
+        </article>
+        <article class="evento">
+          <a href="./detalle_evento02.html">
+            <h3>Conferencia sobre el consumo sostenible</h3>
+          </a>
+          <img src="./images/img_consumo_sostenible.jpg" alt="Imagen consumo sostenible">
+        </article>
+        <article class="evento">
+          <a href="./detalle_evento03.html">
+            <h3>Taller sobre compostaje</h3>
+          </a>
+          <img src="./images/img_taller_compostaje.jpg" alt="Imagen taller compostaje">
+        </article>
+      </div>
+      <div class="botones">
+        <button id="prevBtn" class="boton">❮</button>
+        <button id="nextBtn" class="boton">❯</button>
+      </div>
+    </div>
   </main>
-
   <footer>
+    <br><br><br><br><br><br><br><br><br><br>
     <p>© 2025 Portal de Eventos Sostenibles</p>
   </footer>
-  <script src="/html/js/carrusel.js" defer></script>
+  <script src="./js/carrusel.js" defer></script>
 </body>
-</html>
 
+</html>

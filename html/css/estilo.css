@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f4f8;
+  background-color: #66ccda;
   margin: 0;
   padding: 2rem;
 }
@@ -8,14 +8,17 @@ h1 {
   text-align: center;
   margin-bottom: 1rem;
 }
+
 h2 {
   text-align: center;
   margin-bottom: 1rem;
 }
+
 h4 {
   text-align: center;
   margin-bottom: 1rem;
 }
+
 .carrusel {
   position: relative;
   width: 90%;
@@ -40,18 +43,21 @@ h4 {
 }
 
 .evento img {
-  width: 100%;
+  width: 75%;
   max-height: 300px;
   object-fit: cover;
   border-radius: 10px;
+  border: 2px solid black;
 }
-
-.evento h3 {
-  margin: 0.5rem 0 0.2rem;
+.evento a{
+  color: black;
+  text-decoration: none;
 }
-
+.evento a:hover{
+  text-decoration: underline;
+}
 .evento p {
-  margin: 0.2rem 0;
+  margin: 0.2rem 0 0.5rem;
   color: #555;
 }
 
@@ -77,4 +83,168 @@ h4 {
 
 .boton:hover {
   background-color: rgba(0, 0, 0, 0.7);
+}
+table {
+  width: 90%;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  background-color: #d8fde6;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid #333;
+}
+
+table a {
+  color: black;
+  text-decoration: none;
+}
+
+table a:hover {
+  text-decoration: underline;
+}
+
+th,
+td {
+
+  padding: 0.8rem;
+  text-align: center;
+  border: 2px solid #333;
+}
+
+thead {
+  font-weight: bolder;
+}
+
+
+.headerIndex {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: auto;
+}
+.headerEventos {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.7rem;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.imgLogo {
+  width: 15%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid black;
+}
+
+
+.listaEventos {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.listaEventos a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.listaEventos a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  font-weight: bold;
+}
+
+footer a {
+  color: black;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.cajaListadoEventos {
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: auto;
+}
+.buscador {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.buscador input {
+  padding: 0.5rem 1rem;
+  width: 50%;
+  max-width: 400px;
+  border: 2px solid #333;
+  border-radius: 5px;
+}
+.redes-sociales {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.redes-sociales a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.redes-sociales a img:hover {
+  transform: scale(1.5);
+}
+.evento-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 800px;
+  border: 2px solid #333;
+}
+
+.evento-card h3 {
+  margin-top: 0;
+  color: #2a7a7b;
+  text-align: center;
+}
+
+.evento-card p {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.boton-evento {
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #2a7a7b;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.boton-evento:hover {
+  background-color: #1f5c5c;
 }
