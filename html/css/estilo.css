@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 2rem;
 }
+
 h1 {
   text-align: center;
   margin-bottom: 1rem;
@@ -49,13 +50,16 @@ h4 {
   border-radius: 10px;
   border: 2px solid black;
 }
-.evento a{
+
+.evento a {
   color: black;
   text-decoration: none;
 }
-.evento a:hover{
+
+.evento a:hover {
   text-decoration: underline;
 }
+
 .evento p {
   margin: 0.2rem 0 0.5rem;
   color: #555;
@@ -84,6 +88,7 @@ h4 {
 .boton:hover {
   background-color: rgba(0, 0, 0, 0.7);
 }
+
 table {
   width: 90%;
   margin: 2rem auto;
@@ -124,6 +129,7 @@ thead {
   max-width: 900px;
   margin: auto;
 }
+
 .headerEventos {
   display: flex;
   align-items: center;
@@ -133,12 +139,13 @@ thead {
   max-width: 900px;
   margin: auto;
 }
+
 .headerEventos a {
   display: inline-block;
 }
 
 .imgLogo {
-  width: 150px; 
+  width: 150px;
   height: auto;
   max-height: 150px;
   object-fit: contain;
@@ -189,6 +196,7 @@ footer a:hover {
   max-width: 900px;
   margin: auto;
 }
+
 .buscador {
   text-align: center;
   margin: 1rem auto;
@@ -201,6 +209,7 @@ footer a:hover {
   border: 2px solid #333;
   border-radius: 5px;
 }
+
 .redes-sociales {
   display: flex;
   justify-content: center;
@@ -217,6 +226,7 @@ footer a:hover {
 .redes-sociales a img:hover {
   transform: scale(1.5);
 }
+
 .evento-card {
   background-color: white;
   border-radius: 10px;
@@ -251,4 +261,63 @@ footer a:hover {
 
 .boton-evento:hover {
   background-color: #1f5c5c;
+}
+
+.tabs {
+  max-width: 800px;
+  margin: 2rem auto;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid #333;
+  overflow: hidden;
+}
+
+.tab-labels {
+  display: flex;
+  background-color: #2a7a7b;
+}
+
+.tab-labels label {
+  flex: 1;
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  border-right: 1px solid white;
+}
+
+.tab-labels label:last-child {
+  border-right: none;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.tab-content {
+  display: none;
+  padding: 1.5rem;
+  border-top: 2px solid #333;
+}
+
+#tab1:checked~.content #content1,
+#tab2:checked~.content #content2,
+#tab3:checked~.content #content3,
+#tab4:checked~.content #content4 {
+  display: block;
+}
+
+.tab-labels label:hover {
+  background-color: #1f5c5c;
+}
+
+.estilo_detalle a {
+  color: black;
+  text-decoration: none;
+}
+
+.estilo_detalle a:hover {
+  text-decoration: underline;
+  color: black
 }

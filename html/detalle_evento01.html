@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recogida de basuras en la playa</title>
     <link rel="stylesheet" href="./css/estilo.css">
 </head>
+
 <body>
+    <header>
+        <h1 class="cajaListadoEventos">Recogida de basuras en la playa</h1>
+        <br>
+    </header>
+    <main>
+        <div class="tabs">
+            <!-- Botones -->
+            <input type="radio" id="tab1" name="tabs" checked>
+            <input type="radio" id="tab2" name="tabs">
+            <input type="radio" id="tab3" name="tabs">
+            <input type="radio" id="tab4" name="tabs">
+
+            <!-- Etiquetas -->
+            <div class="tab-labels">
+                <label for="tab1">Descripción</label>
+                <label for="tab2">Ubicación</label>
+                <label for="tab3">Organizador</label>
+                <label for="tab4">Contacto</label>
+            </div>
+
+            <div class="content">
+                <div id="content1" class="tab-content">
+                    <h3>Descripción</h3>
+                    <p>Este evento trata sobre la recogida de basuras en la playa para concienciar sobre la
+                        sostenibilidad.</p>
+                </div>
+                <div id="content2" class="tab-content">
+                    <h3>Ubicación</h3>
+                    <p class="estilo_detalle"><a href="https://maps.app.goo.gl/pxkaUgqw77iqr4zQ7">
+                            Playa de Mera, Oleiros
+                        </a></p>
+                </div>
+                <div id="content3" class="tab-content">
+                    <h3>Organizador</h3>
+                    <p>ONG Verde Esperanza</p>
+                </div>
+                <div id="content4" class="tab-content">
+                    <h3>Contacto</h3>
+                    <p>Email: verdeesperanza@gmail.com<br>Teléfono: 600123456</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carrusel">
+            <div class="carrusel-track" id="track">
+                <article class="evento">
+
+
+                    <img src="./images/img_playa_mera02.jpg" alt="Imagen Playa de Mera">
+                </article>
+                <article class="evento">
+
+
+                    <img src="./images/img_playa_mera03.jpg" alt="Imagen consumo sostenible">
+                </article>
+                <article class="evento">
+
+                    <img src="./images/img_playa_mera04.jpg" alt="Imagen taller compostaje">
+                </article>
+            </div>
+            <div class="botones">
+                <button id="prevBtn" class="boton">❮</button>
+                <button id="nextBtn" class="boton">❯</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <br><br><br><br><br><br>
+ 
+        <p class="volver"><a href="./eventos.html">Volver</a></p>
+        <p>© 2025 Portal de Eventos Sostenibles</p>
+    </footer>
+    <script src="./js/carrusel.js" defer></script>
 </body>
+
 </html>

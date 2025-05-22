@@ -1,11 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Conferencia sobre el consumo sostenible</title>
+    <link rel="stylesheet" href="./css/estilo.css">
 </head>
+
 <body>
-    
+    <header>
+        <h1 class="cajaListadoEventos">Conferencia sobre el consumo sostenible</h1>
+        <br>
+    </header>
+    <main>
+        <div class="tabs">
+            <!-- Botones -->
+            <input type="radio" id="tab1" name="tabs" checked>
+            <input type="radio" id="tab2" name="tabs">
+            <input type="radio" id="tab3" name="tabs">
+            <input type="radio" id="tab4" name="tabs">
+
+            <!-- Etiquetas -->
+            <div class="tab-labels">
+                <label for="tab1">Descripción</label>
+                <label for="tab2">Ubicación</label>
+                <label for="tab3">Organizador</label>
+                <label for="tab4">Contacto</label>
+            </div>
+
+            <div class="content">
+                <div id="content1" class="tab-content">
+                    <h3>Descripción</h3>
+                    <p>Charla telemática sobre prácticas responsables de consumo con técnicos especializados en el medio
+                        ambiente</p>
+                </div>
+                <div id="content2" class="tab-content">
+                    <h3>Ubicación</h3>
+                    <p class="estilo_detalle"><a href="https://www.twitch.tv">
+                            Portal telemático en la plataforma Twitch
+                        </a></p>
+                </div>
+                <div id="content3" class="tab-content">
+                    <h3>Organizador</h3>
+                    <p>Unidos por el cambio</p>
+                </div>
+                <div id="content4" class="tab-content">
+                    <h3>Contacto</h3>
+                    <p>Email: unidosporelcambio@gmail.com<br>Teléfono: 670129436</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carrusel">
+            <div class="carrusel-track" id="track">
+                <article class="evento">
+
+
+
+                    <img src="./images/img_consumo_sostenible02.jpg"
+                        alt="Imágenes referentes al contenido de la charla">
+                </article>
+                <article class="evento">
+                    >
+
+                    <img src="./images/img_consumo_sostenible03.jpg"
+                        alt="Imágenes referentes al contenido de la charla">
+                </article>
+                <article class="evento"> <img src="./images/img_consumo_sostenible04.jpg"
+                        alt="Imágenes referentes al contenido de la charla">
+                </article>
+            </div>
+            <div class="botones">
+                <button id="prevBtn" class="boton">❮</button>
+                <button id="nextBtn" class="boton">❯</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+         <br><br><br><br><br><br>
+        <p class="volver"><a href="./eventos.html">Volver</a></p>
+        <p>© 2025 Portal de Eventos Sostenibles</p>
+    </footer>
+    <script src="./js/carrusel.js" defer></script>
 </body>
+
 </html>
