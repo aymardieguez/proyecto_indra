@@ -133,11 +133,15 @@ thead {
   max-width: 900px;
   margin: auto;
 }
+.headerEventos a {
+  display: inline-block;
+}
 
 .imgLogo {
-  width: 15%;
+  width: 150px; 
+  height: auto;
   max-height: 150px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 10px;
   border: 2px solid black;
 }
