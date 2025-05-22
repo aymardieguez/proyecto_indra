@@ -43,7 +43,8 @@ primary key(evento, usuario)
 )
 go
 
---creacion de un desencadenador que cada vez que un usuario se desinscriba de un evento, se modifique la columna "asistentes" en "eventos"
+--creacion de un desencadenador que cada vez que un usuario se desinscriba de un evento, 
+--se modifique la columna "asistentes" en "eventos" y se le reste uno
 create or alter trigger act_eliminacion_usuario
 on inscriben
 after delete
@@ -54,3 +55,15 @@ begin
 	from eventos e
 		inner join deleted d on e.nombre=d.evento
 end;
+--creacion de un desencadenador que cada vez que un usuario se inscriba en un evento, 
+--se modifique la columna "asistentes" en "eventos" y se le sume uno 
+create or alter trigger act_añadir_usuario
+on inscriben
+after INSERT
+AS
+BEGIN
+	update eventos
+	set asistentes=asistentes+1
+	from eventos e
+		inner join inserted i on i.evento=e.nombre
+END;
