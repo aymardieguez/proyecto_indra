@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Main {
 
@@ -11,6 +13,7 @@ public class Main {
     static Map<String, Usuario> mapaUsuarios = new HashMap<>();
     static Map<String, Evento> mapaEventos = new HashMap<>();
     static Map<String, Organizador> mapaOrganizadores = new HashMap<>();
+    static Set<Categoria> conjuntoCategorias = new TreeSet<>();
 
     public static void main(String[] args) {
         int opcion;
@@ -30,6 +33,7 @@ public class Main {
                 case 7 -> mostrarUsuarios();
                 case 8 -> mostrarEventos();
                 case 9 -> mostrarOrganizadores();
+                case 10 -> mostrarCategorias();
                 case 0 -> System.out.println("Saliendo del programa.");
                 default -> System.out.println("Opción no válida.");
             }
@@ -50,6 +54,7 @@ public class Main {
         System.out.println("7. Mostrar usuarios");
         System.out.println("8. Mostrar eventos");
         System.out.println("9. Mostrar organizadores");
+        System.out.println("10. Mostrar categorías");
         System.out.println("0. Salir");
     }
 
@@ -99,6 +104,10 @@ public class Main {
 
         System.out.println("Tipo de evento (Presencial/Online): ");
         String tipo = teclado.nextLine();
+        if (!tipo.equalsIgnoreCase("Presencial") && !tipo.equalsIgnoreCase("Online")) {
+            System.out.println("Tipo de evento no válido. Debe ser 'Presencial' o 'Online'.");
+            return;
+        }
         Ubicacion ubicacion = new Ubicacion(direccion, tipo);
 
         System.out.println("Nombre del organizador (debe existir): ");
@@ -111,7 +120,7 @@ public class Main {
         }
 
         System.out.println("Categoría del evento: ");
-        String categoria = teclado.nextLine();
+        Categoria categoria = new Categoria(teclado.nextLine());
 
         System.out.println("Fecha del evento (YYYY-MM-DD): ");
         LocalDate fecha = LocalDate.parse(teclado.nextLine());
@@ -199,6 +208,15 @@ public class Main {
     public static void mostrarOrganizadores() {
         for (Organizador o : mapaOrganizadores.values()) {
             System.out.println(o);
+        }
+    }
+
+    public static void mostrarCategorias() {
+        for (Evento e : mapaEventos.values()) {
+            conjuntoCategorias.add(e.getCategoria());
+        }
+        for (Categoria c : conjuntoCategorias) {
+            System.out.println(c);
         }
     }
 }

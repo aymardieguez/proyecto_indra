@@ -57,4 +57,19 @@ public class Usuario {
                 "}";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Usuario usuario = (Usuario) o;
+        return email != null ? email.equals(usuario.email) : usuario.email == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return email != null ? email.hashCode() : 0;
+    }
+
 }

@@ -8,12 +8,12 @@ public class Evento {
     private String nombre;
     private Ubicacion ubicacion;
     private Organizador organizador;
-    private String categoria;
+    private Categoria categoria;
     private LocalDate fecha;
     private int duracion;
     private Map<String, Usuario> mapaUsuarios;
 
-    public Evento(String nombre, Ubicacion ubicacion, Organizador organizador, String categoria, LocalDate fecha,
+    public Evento(String nombre, Ubicacion ubicacion, Organizador organizador, Categoria categoria, LocalDate fecha,
             int duracion) {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -68,11 +68,11 @@ public class Evento {
         this.organizador = organizador;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return this.categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -112,4 +112,18 @@ public class Evento {
                 "}";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Evento evento = (Evento) o;
+        return nombre != null ? nombre.equals(evento.nombre) : evento.nombre == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return nombre != null ? nombre.hashCode() : 0;
+    }
 }

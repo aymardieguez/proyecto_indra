@@ -33,4 +33,18 @@ public class Ubicacion {
                 "}";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Ubicacion that = (Ubicacion) o;
+        return direccion != null ? direccion.equals(that.direccion) : that.direccion == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return direccion != null ? direccion.hashCode() : 0;
+    }
 }
