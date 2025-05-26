@@ -7,24 +7,27 @@ go
 --codigo de la creacion de la base de datos
 create table organizadores(
 nombre varchar(30)  not null primary key,
-correo_electronico varchar(200) not null
-)
-create table telefonos(
-	telefono char(9) not null primary key,
-	organizador varchar(30) not null references organizadores(nombre)
-		on update no action
-		on delete cascade
+correo_electronico varchar(200) not null,
+telefono char(9) not null check (telefono like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 )
 create table ubicaciones(
+localidad varchar(100) not null primary key
+direccion varchar(200) not null,
+)
+create table categorias(
 nombre varchar(100) not null primary key
 )
 create table eventos(
 nombre varchar(30) not null primary key,
 fecha date not null,
 duracion smallint not null check (duracion > 0),
-categoria varchar(100) not null,
+categoria varchar(100) not null references categorias(nombre)
+	on update no action
+	on delete cascade,
 asistentes smallint default 0,
-ubicacion varchar(100) not null references ubicaciones(nombre),
+ubicacion varchar(100) not null references ubicaciones(localidad)
+	on update no action
+	on delete cascade,
 organizador varchar(30) not null references organizadores(nombre)
 	on update no action
 	on delete cascade
