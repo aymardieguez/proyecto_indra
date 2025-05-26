@@ -16,6 +16,22 @@ public class Organizador {
         this.mapaEventos = new HashMap<>();
     }
 
+    public void crearEvento(Evento evento) {
+        if (!mapaEventos.containsKey(evento.getNombre())) {
+            mapaEventos.put(evento.getNombre(), evento);
+        } else {
+            throw new RuntimeException("El evento ya existe");
+        }
+    }
+
+    public void eliminarEvento(Evento evento) {
+        if (mapaEventos.containsKey(evento.getNombre())) {
+            mapaEventos.remove(evento.getNombre());
+        } else {
+            throw new RuntimeException("El evento no existe, no se puede borrar");
+        }
+    }
+
     public String getNombre() {
         return this.nombre;
     }
