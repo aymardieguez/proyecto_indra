@@ -16,6 +16,12 @@ public class Usuario {
         this.mapaEventos = new HashMap<>();
     }
 
+    public void mostrarEventos() {
+        for (Evento evento : mapaEventos.values()) {
+            System.out.println(evento.getNombre());
+        }
+    }
+
     public String getNombre() {
         return this.nombre;
     }

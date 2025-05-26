@@ -15,6 +15,67 @@ public class Main {
     static Map<String, Organizador> mapaOrganizadores = new HashMap<>();
     static Set<Categoria> conjuntoCategorias = new TreeSet<>();
 
+    // Instancias de ejemplo para pruebas
+    static Categoria categoriaEjemplo;
+    static Categoria categoriaEjemplo2;
+    static Ubicacion ubicacionEjemplo;
+    static Ubicacion ubicacionOnline;
+    static Organizador organizadorEjemplo;
+    static Organizador organizadorEjemplo2;
+    static Usuario usuarioEjemplo;
+    static Usuario usuarioEjemplo2;
+    static Evento eventoEjemplo;
+    static Evento eventoEjemplo2;
+
+    static {
+        categoriaEjemplo = new Categoria("Taller");
+        categoriaEjemplo2 = new Categoria("Conferencia");
+        ubicacionEjemplo = new Ubicacion("Calle Mayor 1", "Presencial");
+        ubicacionOnline = new Ubicacion("Zoom", "Online");
+        organizadorEjemplo = new Organizador("EcoEmpresa", 123456789, "eco@empresa.com");
+        organizadorEjemplo2 = new Organizador("SostenibleOrg", 987654321, "sostenible@org.com");
+        usuarioEjemplo = new Usuario("Ana", "ana@email.com", "pass123");
+        usuarioEjemplo2 = new Usuario("Luis", "luis@email.com", "pass456");
+        eventoEjemplo = new Evento(
+                "Taller Reciclaje",
+                ubicacionEjemplo,
+                organizadorEjemplo,
+                categoriaEjemplo,
+                LocalDate.of(2025, 6, 10),
+                2);
+        eventoEjemplo2 = new Evento(
+                "Conferencia Energía",
+                ubicacionOnline,
+                organizadorEjemplo2,
+                categoriaEjemplo2,
+                LocalDate.of(2025, 7, 5),
+                3);
+
+        // Categorías
+        conjuntoCategorias.add(categoriaEjemplo);
+        conjuntoCategorias.add(categoriaEjemplo2);
+
+        // Organizadores
+        mapaOrganizadores.put(organizadorEjemplo.getNombre(), organizadorEjemplo);
+        mapaOrganizadores.put(organizadorEjemplo2.getNombre(), organizadorEjemplo2);
+
+        // Usuarios
+        mapaUsuarios.put(usuarioEjemplo.getNombre(), usuarioEjemplo);
+        mapaUsuarios.put(usuarioEjemplo2.getNombre(), usuarioEjemplo2);
+
+        // Eventos
+        mapaEventos.put(eventoEjemplo.getNombre(), eventoEjemplo);
+        mapaEventos.put(eventoEjemplo2.getNombre(), eventoEjemplo2);
+
+        // Asociar eventos a organizadores
+        organizadorEjemplo.crearEvento(eventoEjemplo);
+        organizadorEjemplo2.crearEvento(eventoEjemplo2);
+
+        // Inscribir usuarios a eventos de ejemplo
+        eventoEjemplo.inscribirUsuario(usuarioEjemplo);
+        eventoEjemplo2.inscribirUsuario(usuarioEjemplo2);
+    }
+
     public static void main(String[] args) {
         int opcion;
 
@@ -34,13 +95,13 @@ public class Main {
                 case 8 -> mostrarEventos();
                 case 9 -> mostrarOrganizadores();
                 case 10 -> mostrarCategorias();
+                case 11 -> mostrarMapaEventosDeUnUsuario();
                 case 0 -> System.out.println("Saliendo del programa.");
                 default -> System.out.println("Opción no válida.");
             }
 
         } while (opcion != 0);
 
-        teclado.close();
     }
 
     public static void mostrarMenu() {
@@ -55,6 +116,7 @@ public class Main {
         System.out.println("8. Mostrar eventos");
         System.out.println("9. Mostrar organizadores");
         System.out.println("10. Mostrar categorías");
+        System.out.println("11. Mostrar eventos de un usuario");
         System.out.println("0. Salir");
     }
 
@@ -218,5 +280,17 @@ public class Main {
         for (Categoria c : conjuntoCategorias) {
             System.out.println(c);
         }
+    }
+
+    public static void mostrarMapaEventosDeUnUsuario() {
+        System.out.println("Introduce el nombre del usuario: ");
+        String nombreUsuario = teclado.nextLine();
+        Usuario usuario = mapaUsuarios.get(nombreUsuario);
+        if (usuario == null) {
+            System.out.println("Usuario no encontrado.");
+            return;
+        }
+        usuario.mostrarEventos();
+
     }
 }
