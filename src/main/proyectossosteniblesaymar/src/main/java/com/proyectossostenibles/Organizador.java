@@ -32,6 +32,16 @@ public class Organizador {
         }
     }
 
+    public void mostrarEventos() {
+        if (!mapaEventos.isEmpty()) {
+            for (String e : mapaEventos.keySet()) {
+                System.out.println(e);
+            }
+        } else {
+            throw new RuntimeException("Este organizador no tiene eventos");
+        }
+    }
+
     public String getNombre() {
         return this.nombre;
     }

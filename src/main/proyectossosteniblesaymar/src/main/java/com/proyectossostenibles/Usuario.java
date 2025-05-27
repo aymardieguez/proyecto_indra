@@ -17,9 +17,14 @@ public class Usuario {
     }
 
     public void mostrarEventos() {
-        for (Evento evento : mapaEventos.values()) {
-            System.out.println(evento.getNombre());
+        if (!mapaEventos.isEmpty()) {
+            for (String evento : mapaEventos.keySet()) {
+                System.out.println(evento);
+            }
+        } else {
+            throw new RuntimeException("Este usuario no está inscrito a ningún evento.");
         }
+
     }
 
     public String getNombre() {
