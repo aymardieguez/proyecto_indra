@@ -24,24 +24,9 @@ public class Evento {
         this.mapaUsuarios = new HashMap<>();
     }
 
-    public void inscribirUsuario(Usuario usuario) {
-        if (!mapaUsuarios.containsKey(usuario.getNombre())) {
-            mapaUsuarios.put(usuario.getNombre(), usuario);
-            usuario.getMapaEventos().put(this.nombre,
-                    this);
-        } else {
-            throw new RuntimeException("El usuario ya está inscrito en el evento");
-        }
-    }
-
-    public void desinscribirUsuario(Usuario usuario) {
-        if (mapaUsuarios.containsKey(usuario.getNombre())) {
-            mapaUsuarios.remove(usuario.getNombre());
-            usuario.getMapaEventos().remove(this.nombre);
-
-        } else {
-            throw new RuntimeException("El usuario no existe en este evento");
-        }
+    public Evento(String nombre, LocalDate fecha) {
+        this.nombre = nombre;
+        this.fecha = fecha;
     }
 
     // aqui usamos este tipo de print en vez de llamar al toString() pues solo nos
@@ -49,9 +34,8 @@ public class Evento {
     // y el email, pues un usuario es igual si tiene mismo email (no mismo nombre)
     public void mostrarUsuariosInscritos() {
         if (!mapaUsuarios.isEmpty()) {
-            for (String u : mapaUsuarios.keySet()) {
-                Usuario usuario = mapaUsuarios.get(u);
-                System.out.println("Nombre:" + usuario.getNombre() + "Email: " + usuario.getEmail());
+            for (Usuario u : mapaUsuarios.values()) {
+                System.out.println(u);
             }
         } else {
             throw new RuntimeException("Mapa de usuarios vacía o proyecto inexistente");

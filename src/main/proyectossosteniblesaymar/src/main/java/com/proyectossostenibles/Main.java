@@ -191,14 +191,12 @@ public class Main {
         System.out.println("Nombre del evento: ");
         String nombreEvento = teclado.nextLine();
         Evento evento = mapaEventos.get(nombreEvento);
-
         if (usuario == null || evento == null) {
-            System.out.println("Usuario o evento no encontrado.");
+            System.out.println("Usuario  o evento no encontrado.");
             return;
         }
-
         try {
-            evento.inscribirUsuario(usuario);
+            usuario.inscribirAEvento(evento);
             System.out.println("Usuario inscrito correctamente.");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -217,14 +215,12 @@ public class Main {
         System.out.println("Nombre del evento: ");
         String nombreEvento = teclado.nextLine();
         Evento evento = mapaEventos.get(nombreEvento);
-
         if (usuario == null || evento == null) {
             System.out.println("Usuario o evento no encontrado.");
             return;
         }
-
         try {
-            evento.desinscribirUsuario(usuario);
+            usuario.desinscribirDeEvento(evento);
             System.out.println("Usuario desinscrito correctamente.");
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
@@ -236,18 +232,21 @@ public class Main {
     public static void mostrarUsuarios() {
         for (Usuario u : mapaUsuarios.values()) {
             System.out.println(u);
+            System.out.println("--------------------");
         }
     }
 
     public static void mostrarEventos() {
         for (Evento e : mapaEventos.values()) {
             System.out.println(e);
+            System.out.println("--------------------");
         }
     }
 
     public static void mostrarOrganizadores() {
         for (Organizador o : mapaOrganizadores.values()) {
             System.out.println(o);
+            System.out.println("--------------------");
         }
     }
 
@@ -309,49 +308,93 @@ public class Main {
     public static void init() {
         categoriaEjemplo = new Categoria("Taller");
         categoriaEjemplo2 = new Categoria("Conferencia");
+        Categoria categoriaEjemplo3 = new Categoria("Voluntariado");
+        Categoria categoriaEjemplo4 = new Categoria("Charla");
+
         ubicacionEjemplo = new Ubicacion("Calle Mayor 1", "Presencial");
         ubicacionOnline = new Ubicacion("Zoom", "Online");
+        Ubicacion ubicacionEjemplo2 = new Ubicacion("Av. Libertad 22", "Presencial");
+        Ubicacion ubicacionOnline2 = new Ubicacion("Google Meet", "Online");
+
         organizadorEjemplo = new Organizador("EcoEmpresa", 123456789, "eco@empresa.com");
         organizadorEjemplo2 = new Organizador("SostenibleOrg", 987654321, "sostenible@org.com");
+        Organizador organizadorEjemplo3 = new Organizador("VerdeVida", 555123456, "verde@vida.com");
+
         usuarioEjemplo = new Usuario("Ana", "ana@email.com", "pass123");
         usuarioEjemplo2 = new Usuario("Luis", "luis@email.com", "pass456");
+        Usuario usuarioEjemplo3 = new Usuario("Marta", "marta@email.com", "pass789");
+        Usuario usuarioEjemplo4 = new Usuario("Pedro", "pedro@email.com", "pass321");
+
         eventoEjemplo = new Evento(
                 "Taller Reciclaje",
                 ubicacionEjemplo,
                 organizadorEjemplo,
                 categoriaEjemplo,
-                LocalDate.of(2025, 6, 10),
+                java.time.LocalDate.of(2025, 6, 10),
                 2);
         eventoEjemplo2 = new Evento(
                 "Conferencia Energía",
                 ubicacionOnline,
                 organizadorEjemplo2,
                 categoriaEjemplo2,
-                LocalDate.of(2025, 7, 5),
+                java.time.LocalDate.of(2025, 7, 5),
                 3);
+        Evento eventoEjemplo3 = new Evento(
+                "Jornada Voluntariado",
+                ubicacionEjemplo2,
+                organizadorEjemplo3,
+                categoriaEjemplo3,
+                java.time.LocalDate.of(2025, 8, 15),
+                4);
+        Evento eventoEjemplo4 = new Evento(
+                "Charla Reciclaje",
+                ubicacionOnline2,
+                organizadorEjemplo,
+                categoriaEjemplo4,
+                java.time.LocalDate.of(2025, 9, 20),
+                1);
 
         // Categorías
+        conjuntoCategorias.clear();
         conjuntoCategorias.add(categoriaEjemplo);
         conjuntoCategorias.add(categoriaEjemplo2);
+        conjuntoCategorias.add(categoriaEjemplo3);
+        conjuntoCategorias.add(categoriaEjemplo4);
 
         // Organizadores
+        mapaOrganizadores.clear();
         mapaOrganizadores.put(organizadorEjemplo.getNombre(), organizadorEjemplo);
         mapaOrganizadores.put(organizadorEjemplo2.getNombre(), organizadorEjemplo2);
+        mapaOrganizadores.put(organizadorEjemplo3.getNombre(), organizadorEjemplo3);
 
         // Usuarios
+        mapaUsuarios.clear();
         mapaUsuarios.put(usuarioEjemplo.getNombre(), usuarioEjemplo);
         mapaUsuarios.put(usuarioEjemplo2.getNombre(), usuarioEjemplo2);
+        mapaUsuarios.put(usuarioEjemplo3.getNombre(), usuarioEjemplo3);
+        mapaUsuarios.put(usuarioEjemplo4.getNombre(), usuarioEjemplo4);
 
         // Eventos
+        mapaEventos.clear();
         mapaEventos.put(eventoEjemplo.getNombre(), eventoEjemplo);
         mapaEventos.put(eventoEjemplo2.getNombre(), eventoEjemplo2);
+        mapaEventos.put(eventoEjemplo3.getNombre(), eventoEjemplo3);
+        mapaEventos.put(eventoEjemplo4.getNombre(), eventoEjemplo4);
 
         // Asociar eventos a organizadores
         organizadorEjemplo.crearEvento(eventoEjemplo);
         organizadorEjemplo2.crearEvento(eventoEjemplo2);
+        organizadorEjemplo3.crearEvento(eventoEjemplo3);
+        organizadorEjemplo.crearEvento(eventoEjemplo4);
 
-        // Inscribir usuarios a eventos
-        eventoEjemplo.inscribirUsuario(usuarioEjemplo);
-        eventoEjemplo2.inscribirUsuario(usuarioEjemplo2);
+        // Inscribir usuarios a eventos (variedad de combinaciones)
+        usuarioEjemplo.inscribirAEvento(eventoEjemplo);
+        usuarioEjemplo.inscribirAEvento(eventoEjemplo2);
+        usuarioEjemplo2.inscribirAEvento(eventoEjemplo2);
+        usuarioEjemplo2.inscribirAEvento(eventoEjemplo3);
+        usuarioEjemplo3.inscribirAEvento(eventoEjemplo3);
+        usuarioEjemplo3.inscribirAEvento(eventoEjemplo4);
+        usuarioEjemplo4.inscribirAEvento(eventoEjemplo);
+        usuarioEjemplo4.inscribirAEvento(eventoEjemplo4);
     }
 }

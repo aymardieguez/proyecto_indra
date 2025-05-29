@@ -34,7 +34,7 @@ public class Organizador {
 
     public void mostrarEventos() {
         if (!mapaEventos.isEmpty()) {
-            for (String e : mapaEventos.keySet()) {
+            for (Evento e : mapaEventos.values()) {
                 System.out.println(e);
             }
         } else {

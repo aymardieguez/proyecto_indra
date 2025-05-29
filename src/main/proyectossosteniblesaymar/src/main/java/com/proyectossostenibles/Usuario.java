@@ -16,13 +16,33 @@ public class Usuario {
         this.mapaEventos = new HashMap<>();
     }
 
+    public void inscribirAEvento(Evento e) {
+        String nombreYFecha = e.getNombre() + "_" + e.getFecha().toString();
+        if (mapaEventos.containsKey(nombreYFecha)) {
+            throw new RuntimeException("Ya estás inscrito a este evento en esa fecha o no existe.");
+        } else {
+            mapaEventos.put(nombreYFecha, e);
+            e.getMapaUsuarios().put(this.nombre, this); // Añadimos el usuario al mapa de usuarios del evento
+        }
+    }
+
+    public void desinscribirDeEvento(Evento e) {
+        String nombreYFecha = e.getNombre() + "_" + e.getFecha().toString();
+        if (mapaEventos.containsKey(nombreYFecha)) {
+            mapaEventos.remove(nombreYFecha);
+            e.getMapaUsuarios().remove(this.nombre); // Eliminamos el usuario del mapa de usuarios del evento
+        } else {
+            throw new RuntimeException("No estás inscrito a ese evento en esa fecha o no existe.");
+        }
+    }
+
     public void mostrarEventos() {
         if (!mapaEventos.isEmpty()) {
-            for (String evento : mapaEventos.keySet()) {
-                System.out.println(evento);
+            for (Evento e : mapaEventos.values()) {
+                System.out.println(e);
             }
         } else {
-            throw new RuntimeException("Este usuario no está inscrito a ningún evento.");
+            throw new RuntimeException("Este usuario no está inscrito a ningún evento o no existe.");
         }
 
     }
