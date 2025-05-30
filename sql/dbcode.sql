@@ -4,69 +4,56 @@ create database proyectos_sostenibles_aymar
 go
 use proyectos_sostenibles_aymar
 go
---codigo de la creacion de la base de datos
-create table organizadores(
-nombre varchar(30)  not null primary key,
-correo_electronico varchar(200) not null,
-telefono char(9) not null check (telefono like '[0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
+create table organizadores
+(
+	nombre varchar(30) not null primary key,
+	email varchar(200) not null,
+	telefono char(9) not null check (telefono like '6[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'),
 )
-create table ubicaciones(
-localidad varchar(100) not null primary key
-direccion varchar(200) not null,
+create table ubicaciones
+(
+	id_ubicacion tinyint not null primary key,
+	tipo varchar(20) not null check (tipo in ('presencial','telematico')),
+	localidad varchar(100),
+	direccion varchar(200),
+	check(
+	(tipo= 'telematico' and localidad is null and direccion is null)
+	 or(tipo='presencial' and localidad is not null and direccion is not null)
 )
-create table categorias(
-nombre varchar(100) not null primary key
 )
-create table eventos(
-nombre varchar(30) not null primary key,
-fecha date not null,
-duracion smallint not null check (duracion > 0),
-categoria varchar(100) not null references categorias(nombre)
+create table categorias
+(
+	nombre varchar(100) not null primary key,
+	descripcion varchar(200)not null
+)
+create table eventos
+(
+	codigo tinyint not null primary key,
+	nombre varchar(30) not null ,
+	fecha date not null,
+	duracion time not null check (duracion > '00:00:00'),
+	categoria varchar(100) not null references categorias(nombre)
 	on update no action
 	on delete cascade,
-asistentes smallint default 0,
-ubicacion varchar(100) not null references ubicaciones(localidad)
+	ubicacion tinyint not null references ubicaciones(id_ubicacion)
 	on update no action
 	on delete cascade,
-organizador varchar(30) not null references organizadores(nombre)
+	organizador varchar(30) not null references organizadores(nombre)
 	on update no action
 	on delete cascade
 )
-create table usuarios(
-correo_electronico varchar(200) not null primary key ,
-nombre varchar(30)not null,
-contraseña varchar(30) not null
+create table usuarios
+(
+	email varchar(200) not null primary key ,
+	nombre varchar(30)not null,
+	contraseña varchar(15) not null
 )
-create table inscriben(
-evento varchar(30) not null references eventos(nombre),
-usuario varchar(200) not null references usuarios(correo_electronico)
+create table inscriben
+(
+	evento tinyint not null references eventos(codigo),
+	usuario varchar(200) not null references usuarios(email)
 	on update no action
 	on delete cascade,
-primary key(evento, usuario)
+	primary key(evento, usuario)
 )
 go
-
---creacion de un desencadenador que cada vez que un usuario se desinscriba de un evento, 
---se modifique la columna "asistentes" en "eventos" y se le reste uno
-create or alter trigger act_eliminacion_usuario
-on inscriben
-after delete
-as
-begin
-	update eventos
-	set asistentes=asistentes-1
-	from eventos e
-		inner join deleted d on e.nombre=d.evento
-end;
---creacion de un desencadenador que cada vez que un usuario se inscriba en un evento, 
---se modifique la columna "asistentes" en "eventos" y se le sume uno 
-create or alter trigger act_añadir_usuario
-on inscriben
-after INSERT
-AS
-BEGIN
-	update eventos
-	set asistentes=asistentes+1
-	from eventos e
-		inner join inserted i on i.evento=e.nombre
-END;
