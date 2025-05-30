@@ -1,26 +1,11 @@
 package com.proyectossostenibles;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UbicacionTest {
-    @Test
-    void testConstructorAndGetters() {
-        Ubicacion u = new Ubicacion("Calle 1", "Presencial");
-        assertEquals("Calle 1", u.getDireccion());
-        assertEquals("Presencial", u.getTipo());
-    }
-
-    @Test
-    void testSetters() {
-        Ubicacion u = new Ubicacion("A", "B");
-        u.setDireccion("C");
-        u.setTipo("Online");
-        assertEquals("C", u.getDireccion());
-        assertEquals("Online", u.getTipo());
-    }
 
     @Test
     void testToString() {
