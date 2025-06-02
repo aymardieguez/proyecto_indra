@@ -29,9 +29,6 @@ public class Evento {
         this.fecha = fecha;
     }
 
-    // aqui usamos este tipo de print en vez de llamar al toString() pues solo nos
-    // interesa el nombre
-    // y el email, pues un usuario es igual si tiene mismo email (no mismo nombre)
     public void mostrarUsuariosInscritos() {
         if (!mapaUsuarios.isEmpty()) {
             for (Usuario u : mapaUsuarios.values()) {
