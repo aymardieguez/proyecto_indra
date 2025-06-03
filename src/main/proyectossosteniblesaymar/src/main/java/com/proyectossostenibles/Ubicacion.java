@@ -1,12 +1,13 @@
 package com.proyectossostenibles;
 
 public class Ubicacion {
-    private String direccion;
     private String tipo;
+    private String direccion;
 
-    public Ubicacion(String direccion, String tipo) {
-        this.direccion = direccion;
+    public Ubicacion(String tipo, String direccion) {
         this.tipo = tipo;
+        this.direccion = direccion; // en los Eventos online en este apartado se pone la plataforma (ej: Teams)
+
     }
 
     public String getDireccion() {
@@ -28,8 +29,8 @@ public class Ubicacion {
     @Override
     public String toString() {
         return "{" +
-                " direccion='" + getDireccion() + "'" +
-                ", tipo='" + getTipo() + "'" +
+                " tipo='" + getTipo() + "'" +
+                ", dirección/plataforma='" + getDireccion() + "'" +
                 "}";
     }
 

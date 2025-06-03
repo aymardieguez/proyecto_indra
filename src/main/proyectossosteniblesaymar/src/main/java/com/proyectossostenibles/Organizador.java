@@ -10,10 +10,17 @@ public class Organizador {
     private Map<String, Evento> mapaEventos;
 
     public Organizador(String nombre, int telefono, String email) {
+        if (!esCorreoValido(email)) {
+            throw new IllegalArgumentException("Correo electrónico inválido: " + email);
+        }
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
         this.mapaEventos = new HashMap<>();
+    }
+
+    private boolean esCorreoValido(String email) {
+        return email != null && email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
     }
 
     public void crearEvento(Evento evento) {

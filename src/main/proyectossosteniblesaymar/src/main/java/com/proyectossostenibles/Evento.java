@@ -35,7 +35,7 @@ public class Evento {
                 System.out.println(u);
             }
         } else {
-            throw new RuntimeException("Mapa de usuarios vacía o proyecto inexistente");
+            throw new RuntimeException("Mapa de usuarios vacía o evento inexistente");
         }
     }
 

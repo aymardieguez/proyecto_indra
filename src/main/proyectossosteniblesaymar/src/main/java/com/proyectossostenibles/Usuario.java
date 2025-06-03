@@ -4,35 +4,40 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Usuario {
-    private String nombre;
     private String email;
+    private String nombre;
     private String contraseña;
     private Map<String, Evento> mapaEventos;
 
-    public Usuario(String nombre, String email, String contraseña) {
-        this.nombre = nombre;
+    public Usuario(String email, String nombre, String contraseña) {
+        if (!esCorreoValido(email)) {
+            throw new IllegalArgumentException("Correo electrónico inválido: " + email);
+        }
         this.email = email;
+        this.nombre = nombre;
         this.contraseña = contraseña;
         this.mapaEventos = new HashMap<>();
     }
 
+    private boolean esCorreoValido(String email) {
+        return email != null && email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
+    }
+
     public void inscribirAEvento(Evento e) {
-        String nombreYFecha = e.getNombre() + "_" + e.getFecha().toString();
-        if (mapaEventos.containsKey(nombreYFecha)) {
-            throw new RuntimeException("Ya estás inscrito a este evento en esa fecha o no existe.");
+        if (mapaEventos.containsKey(e.getNombre())) {
+            throw new RuntimeException("Ya estás inscrito a este evento o no existe.");
         } else {
-            mapaEventos.put(nombreYFecha, e);
-            e.getMapaUsuarios().put(this.nombre, this); // Añadimos el usuario al mapa de usuarios del evento
+            mapaEventos.put(e.getNombre(), e);
+            e.getMapaUsuarios().put(this.email, this); // Añadimos el usuario al mapa de usuarios del evento
         }
     }
 
     public void desinscribirDeEvento(Evento e) {
-        String nombreYFecha = e.getNombre() + "_" + e.getFecha().toString();
-        if (mapaEventos.containsKey(nombreYFecha)) {
-            mapaEventos.remove(nombreYFecha);
-            e.getMapaUsuarios().remove(this.nombre); // Eliminamos el usuario del mapa de usuarios del evento
+        if (mapaEventos.containsKey(e.getNombre())) {
+            mapaEventos.remove(e.getNombre());
+            e.getMapaUsuarios().remove(this.email); // Eliminamos el usuario del mapa de usuarios del evento
         } else {
-            throw new RuntimeException("No estás inscrito a ese evento en esa fecha o no existe.");
+            throw new RuntimeException("No estás inscrito a ese evento o no existe.");
         }
     }
 
@@ -47,20 +52,20 @@ public class Usuario {
 
     }
 
-    public String getNombre() {
-        return this.nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public String getEmail() {
         return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNombre() {
+        return this.nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getContraseña() {
@@ -82,8 +87,8 @@ public class Usuario {
     @Override
     public String toString() {
         return "{" +
-                " nombre='" + getNombre() + "'" +
-                ", email='" + getEmail() + "'" +
+                " email='" + getEmail() + "'" +
+                ", nombre='" + getNombre() + "'" +
                 ", contraseña='" + getContraseña() + "'" +
                 "}";
     }
