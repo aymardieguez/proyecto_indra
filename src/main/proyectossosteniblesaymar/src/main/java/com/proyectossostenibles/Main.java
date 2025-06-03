@@ -77,43 +77,51 @@ public class Main {
 
     // pedimos los datos y si no existe el usuario (mismo email) creamos un usuario
     // en el Portal (sin eventos asociados)
-    public static void crearUsuario() {
-        System.out.println("Nombre de usuario: ");
-        String nombre = teclado.nextLine();
-        System.out.println("Email: ");
-        String email = teclado.nextLine();
-        System.out.println("Contraseña: ");
-        String contraseña = teclado.nextLine();
-        for (Usuario u : mapaUsuarios.values()) {
-            if (u.getEmail().equalsIgnoreCase(email)) {
-                System.out.println("Ya hay un usuario con este email, no se admiten emails duplicados.");
-                return;
+    public static void crearUsuario() throws RuntimeException {
+        try {
+            System.out.println("Email del usuario: ");
+            String email = teclado.nextLine();
+            System.out.println("Nombre: ");
+            String nombre = teclado.nextLine();
+            System.out.println("Contraseña: ");
+            String contraseña = teclado.nextLine();
+            for (Usuario u : mapaUsuarios.values()) {
+                if (u.getEmail().equalsIgnoreCase(email)) {
+                    System.out.println("Ya hay un usuario con este email, no se admiten emails duplicados.");
+                    return;
+                }
             }
+            mapaUsuarios.put(email, new Usuario(email, nombre, contraseña));
+            System.out.println("Usuario creado correctamente.");
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
-        mapaUsuarios.put(nombre, new Usuario(nombre, email, contraseña));
-        System.out.println("Usuario creado correctamente.");
 
     }
 
     // pedimos los datos y si no existe el organizador (mismo email) creamos un
     // organizador
     // en el Portal (sin eventos asociados)
-    public static void crearOrganizador() {
-        System.out.println("Nombre del organizador: ");
-        String nombre = teclado.nextLine();
-        System.out.println("Teléfono: ");
-        int telefono = teclado.nextInt();
-        teclado.nextLine();
-        System.out.println("Email: ");
-        String email = teclado.nextLine();
-        for (Organizador o : mapaOrganizadores.values()) {
-            if (o.getEmail().equalsIgnoreCase(email)) {
-                System.out.println("Ya hay un organizador con este email, no se admiten emails duplicados.");
-                return;
+    public static void crearOrganizador() throws RuntimeException {
+        try {
+            System.out.println("Nombre del organizador: ");
+            String nombre = teclado.nextLine();
+            System.out.println("Teléfono: ");
+            int telefono = Integer.parseInt(teclado.nextLine());
+            System.out.println("Email: ");
+            String email = teclado.nextLine();
+            for (Organizador o : mapaOrganizadores.values()) {
+                if (o.getEmail().equalsIgnoreCase(email)) {
+                    System.out.println("Ya hay un organizador con este email, no se admiten emails duplicados.");
+                    return;
+                }
             }
+            mapaOrganizadores.put(nombre, new Organizador(nombre, telefono, email));
+            System.out.println("Organizador creado correctamente.");
+
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
         }
-        mapaOrganizadores.put(nombre, new Organizador(nombre, telefono, email));
-        System.out.println("Organizador creado correctamente.");
 
     }
 
@@ -123,16 +131,16 @@ public class Main {
         System.out.println("Nombre del evento: ");
         String nombre = teclado.nextLine();
 
-        System.out.println("Dirección del evento: ");
-        String direccion = teclado.nextLine();
-
         System.out.println("Tipo de evento (Presencial/Online): ");
         String tipo = teclado.nextLine();
         if (!tipo.equalsIgnoreCase("Presencial") && !tipo.equalsIgnoreCase("Online")) {
             System.out.println("Tipo de evento no válido. Debe ser 'Presencial' o 'Online'.");
             return;
         }
-        Ubicacion ubicacion = new Ubicacion(direccion, tipo);
+        System.out.println("Dirección del evento u plataforma (si es online): ");
+        String direccion = teclado.nextLine();
+
+        Ubicacion ubicacion = new Ubicacion(tipo, direccion);
 
         System.out.println("Nombre del organizador (debe existir): ");
         String nombreOrganizador = teclado.nextLine();
@@ -143,7 +151,8 @@ public class Main {
             return;
         }
 
-        System.out.println("Categoría del evento: ");
+        System.out.println("Seleccione una categoría (debe existir): ");
+        mostrarCategorias();
         Categoria categoria = new Categoria(teclado.nextLine());
 
         System.out.println("Fecha del evento (YYYY-MM-DD): ");
@@ -184,17 +193,19 @@ public class Main {
     // funcion inscribirUsuario(Usuario usuario) en la clase Evento
     public static void inscribirUsuario() throws RuntimeException {
         mostrarUsuarios();
-        System.out.println("Nombre del usuario: ");
-        String nombreUsuario = teclado.nextLine();
-        Usuario usuario = mapaUsuarios.get(nombreUsuario);
+        System.out.println("Email del usuario: ");
+        String emailUsuario = teclado.nextLine();
+        Usuario usuario = mapaUsuarios.get(emailUsuario);
 
         System.out.println("Nombre del evento: ");
         String nombreEvento = teclado.nextLine();
         Evento evento = mapaEventos.get(nombreEvento);
+
         if (usuario == null || evento == null) {
-            System.out.println("Usuario  o evento no encontrado.");
+            System.out.println("Usuario o evento no encontrado.");
             return;
         }
+
         try {
             usuario.inscribirAEvento(evento);
             System.out.println("Usuario inscrito correctamente.");
@@ -208,9 +219,9 @@ public class Main {
     // OJO, desinscribir un usuario no lo elimina del Portal!!
     public static void desinscribirUsuario() throws RuntimeException {
         mostrarUsuarios();
-        System.out.println("Nombre del usuario: ");
-        String nombreUsuario = teclado.nextLine();
-        Usuario usuario = mapaUsuarios.get(nombreUsuario);
+        System.out.println("Email del usuario: ");
+        String emailUsuario = teclado.nextLine();
+        Usuario usuario = mapaUsuarios.get(emailUsuario);
 
         System.out.println("Nombre del evento: ");
         String nombreEvento = teclado.nextLine();
@@ -263,9 +274,9 @@ public class Main {
     // organizador
     public static void mostrarMapaEventosDeUnUsuario() throws RuntimeException {
         mostrarUsuarios();
-        System.out.println("Introduce el nombre del usuario: ");
-        String nombreUsuario = teclado.nextLine();
-        Usuario usuario = mapaUsuarios.get(nombreUsuario);
+        System.out.println("Introduce el email del usuario: ");
+        String emailUsuario = teclado.nextLine();
+        Usuario usuario = mapaUsuarios.get(emailUsuario);
         if (usuario == null) {
             System.out.println("Usuario no encontrado.");
             return;
@@ -320,10 +331,10 @@ public class Main {
         organizadorEjemplo2 = new Organizador("SostenibleOrg", 987654321, "sostenible@org.com");
         Organizador organizadorEjemplo3 = new Organizador("VerdeVida", 555123456, "verde@vida.com");
 
-        usuarioEjemplo = new Usuario("Ana", "ana@email.com", "pass123");
-        usuarioEjemplo2 = new Usuario("Luis", "luis@email.com", "pass456");
-        Usuario usuarioEjemplo3 = new Usuario("Marta", "marta@email.com", "pass789");
-        Usuario usuarioEjemplo4 = new Usuario("Pedro", "pedro@email.com", "pass321");
+        usuarioEjemplo = new Usuario("ana@email.com", "Ana", "pass123");
+        usuarioEjemplo2 = new Usuario("luis@email.com", "Luis", "pass456");
+        Usuario usuarioEjemplo3 = new Usuario("marta@email.com", "Marta", "pass789");
+        Usuario usuarioEjemplo4 = new Usuario("pedro@email.com", "Pedro", "pass321");
 
         eventoEjemplo = new Evento(
                 "Taller Reciclaje",
@@ -369,10 +380,10 @@ public class Main {
 
         // Usuarios
         mapaUsuarios.clear();
-        mapaUsuarios.put(usuarioEjemplo.getNombre(), usuarioEjemplo);
-        mapaUsuarios.put(usuarioEjemplo2.getNombre(), usuarioEjemplo2);
-        mapaUsuarios.put(usuarioEjemplo3.getNombre(), usuarioEjemplo3);
-        mapaUsuarios.put(usuarioEjemplo4.getNombre(), usuarioEjemplo4);
+        mapaUsuarios.put(usuarioEjemplo.getEmail(), usuarioEjemplo);
+        mapaUsuarios.put(usuarioEjemplo2.getEmail(), usuarioEjemplo2);
+        mapaUsuarios.put(usuarioEjemplo3.getEmail(), usuarioEjemplo3);
+        mapaUsuarios.put(usuarioEjemplo4.getEmail(), usuarioEjemplo4);
 
         // Eventos
         mapaEventos.clear();
