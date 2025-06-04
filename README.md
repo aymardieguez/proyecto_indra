@@ -14,7 +14,6 @@ Cada evento cuenta con un carrusel de imágenes temáticas del mismo y varias ca
 
 Además todas las páginas cuentan en la parte inferior izquierda con un botón de retroceso a la página padre.
 
-Puedes consultar la página [aqui](/html/index.html).
 
 
 ## Bases de datos
