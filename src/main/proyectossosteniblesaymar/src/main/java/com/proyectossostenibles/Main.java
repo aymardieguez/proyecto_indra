@@ -52,9 +52,6 @@ public class Main {
                 case 11 -> mostrarMapaEventosDeUnUsuario();
                 case 12 -> mostrarUsuariosDeUnEvento();
                 case 13 -> mostrarMapaEventosDeUnOrganizador();
-                case 14 -> modificarNombreEvento();
-                case 15 -> modificarFechaEvento();
-                case 16 -> modificarUbicacionEvento();
                 case 0 -> System.out.println("Saliendo del programa.");
                 default -> System.out.println("Opción no válida.");
             }
