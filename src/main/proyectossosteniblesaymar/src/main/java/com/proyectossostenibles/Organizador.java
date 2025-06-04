@@ -1,5 +1,6 @@
 package com.proyectossostenibles;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +37,39 @@ public class Organizador {
             mapaEventos.remove(evento.getNombre());
         } else {
             throw new RuntimeException("El evento no existe, no se puede borrar");
+        }
+    }
+
+    public boolean modificarNombreEvento(Evento e, String nombreNuevo) {
+        if (mapaEventos.containsKey(e.getNombre())) {
+            String nombreViejo = e.getNombre();
+            Evento evento = mapaEventos.get(nombreViejo);
+            evento.setNombre(nombreNuevo);
+            mapaEventos.remove(nombreViejo);
+            mapaEventos.put(nombreNuevo, evento);
+            return true;
+        } else {
+            throw new RuntimeException("El evento no existe, no se puede modificar");
+        }
+    }
+
+    public boolean modificarFechaEvento(Evento e, LocalDate nuevaFecha) {
+        if (mapaEventos.containsKey(e.getNombre())) {
+            Evento evento = mapaEventos.get(e.getNombre());
+            evento.setFecha(nuevaFecha);
+            return true;
+        } else {
+            throw new RuntimeException("El evento no existe, no se puede modificar");
+        }
+    }
+
+    public boolean modificarUbicacionEvento(Evento e, Ubicacion nuevaUbicacion) {
+        if (mapaEventos.containsKey(e.getNombre())) {
+            Evento evento = mapaEventos.get(e.getNombre());
+            evento.setUbicacion(nuevaUbicacion);
+            return true;
+        } else {
+            throw new RuntimeException("El evento no existe, no se puede modificar");
         }
     }
 

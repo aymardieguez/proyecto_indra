@@ -9,6 +9,9 @@ import java.util.TreeSet;
 
 public class Main {
 
+    // Este main contiene algunos métodos (no todos) que permiten probar el
+    // funcionamiento de algunas clases del proyecto.
+
     static Scanner teclado = new Scanner(System.in);
     static Map<String, Usuario> mapaUsuarios = new HashMap<>();
     static Map<String, Evento> mapaEventos = new HashMap<>();
@@ -49,6 +52,9 @@ public class Main {
                 case 11 -> mostrarMapaEventosDeUnUsuario();
                 case 12 -> mostrarUsuariosDeUnEvento();
                 case 13 -> mostrarMapaEventosDeUnOrganizador();
+                case 14 -> modificarNombreEvento();
+                case 15 -> modificarFechaEvento();
+                case 16 -> modificarUbicacionEvento();
                 case 0 -> System.out.println("Saliendo del programa.");
                 default -> System.out.println("Opción no válida.");
             }
