@@ -32,4 +32,3 @@ He utilizado mapas para guardar y almacenar los datos, también he realizado uno
 ## Doc
 
 En esta carpeta he subido diferente documentación como la instalación de la Máquina Virtual Windows 10, el diseño de la base de datos, el grafo de ramas...
-
